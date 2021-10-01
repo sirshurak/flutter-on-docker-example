@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  flutter:
+    container_name: flutter-dev
+    build:
+      context: .
+      dockerfile: flutter-dev.dockerfile
+    volumes:
+      - ".:/var/www/app"
+    ports:
+      - "8080:4040"
