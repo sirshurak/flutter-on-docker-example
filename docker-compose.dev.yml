@@ -1,11 +1,14 @@
 version: "3.9"
 services:
   flutter:
-    container_name: flutter-dev
+    container_name: flutter-app
     build:
       context: .
-      dockerfile: flutter-dev.dockerfile
+      dockerfile: flutter.dockerfile
+    working_dir: /project
     volumes:
-      - ".:/var/www/app"
+      - ".:/project"
     ports:
-      - "8080:4040"
+      - "8090:8090"
+      - "42000:42000"
+    entrypoint: ./flutter-web.sh

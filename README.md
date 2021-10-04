@@ -19,6 +19,32 @@ samples, guidance on mobile development, and a full API reference.
 
 Run the following command:
 
-```bash
-$ docker compose -f docker-compose.dev.yml up -d --build
+Installing image
+
+```shell
+docker build -t flutter -f flutter.dockerfile .
+```
+
+### Flutter Default (help)
+
+```shell
+docker run --rm --workdir /project -v .:/project flutter help
+```
+
+### Flutter connected usb device
+
+```shell
+docker run --rm --workdir /project -v .:/project --device=/dev/bus -v /dev/bus/usb:/dev/bus/usb flutter devices
+```
+
+### Flutter android emulator
+
+```shell
+xhost local:$USER && docker run --rm -ti -p 42000:42000 --workdir /project --device /dev/kvm --device /dev/dri:/dev/dri -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY -v .:/project --entrypoint flutter-android-emulator flutter
+```
+
+### Flutter Web
+
+```shell
+docker run --rm -ti -p 42000:42000 -p 8090:8090  --workdir /project -v .:/project --entrypoint flutter-web flutter
 ```
