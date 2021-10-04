@@ -22,29 +22,31 @@ Run the following command:
 Installing image
 
 ```shell
-docker build -t flutter -f flutter.dockerfile .
+docker build -t flutter-dev -f flutter.dockerfile .
 ```
 
 ### Flutter Default (help)
 
 ```shell
-docker run --rm --workdir /project -v .:/project flutter help
+docker run --rm --workdir /project -v .:/project flutter-dev help
 ```
 
 ### Flutter connected usb device
 
 ```shell
-docker run --rm --workdir /project -v .:/project --device=/dev/bus -v /dev/bus/usb:/dev/bus/usb flutter devices
+docker run --rm --workdir /project -v .:/project --device=/dev/bus -v /dev/bus/usb:/dev/bus/usb flutter-dev devices
 ```
 
 ### Flutter android emulator
 
 ```shell
-xhost local:$USER && docker run --rm -ti -p 42000:42000 --workdir /project --device /dev/kvm --device /dev/dri:/dev/dri -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY -v .:/project --entrypoint flutter-android-emulator flutter
+xhost local:$USER && docker run --rm -ti -p 42000:42000 --workdir /project --device /dev/kvm --device /dev/dri:/dev/dri -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY -v .:/project --entrypoint flutter-android-emulator flutter-dev
 ```
 
 ### Flutter Web
 
 ```shell
-docker run --rm -ti -p 42000:42000 -p 8090:8090  --workdir /project -v .:/project --entrypoint flutter-web flutter
+docker run --rm -ti -p 42000:42000 -p 8090:8090  --workdir /project -v .:/project --entrypoint flutter-web flutter-dev
 ```
+
+Based on image: https://github.com/matsp/docker-flutter
